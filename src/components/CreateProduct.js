@@ -61,7 +61,9 @@ export default class CreateProduct extends Component {
     }
     console.log('data', data)
 
-    axios.post(`http://localhost/curso-laravel/inventario_producto/public/registro`, { data })
+    axios.post(`http://localhost/curso-laravel/inventario_producto/public/registro`,{headers: {
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+    }}, { data })
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -70,6 +72,9 @@ export default class CreateProduct extends Component {
       if(data){
         return <Redirect push to="/" />;
       }
+
+
+      
 
   }
     
