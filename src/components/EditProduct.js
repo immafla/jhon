@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
+import axios from 'axios';
 import { product } from "../mocks/product";
 import "../style/globalStyle.css";
 
@@ -59,13 +60,6 @@ export default class EditProduct extends Component {
     }
     console.log(data)
 
-    fetch('http://localhost/curso-laravel/inventario_producto/public/registro', {
-      method: 'POST',  
-      body: JSON.stringify(data),  
-      headers:{'Content-Type': 'application/json'}
-    }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
-        .catch(error => console.error('Error:', error));
   }
     
   handleEdit(e) {
@@ -77,10 +71,24 @@ export default class EditProduct extends Component {
   }
   componentDidMount(){
     const { params } = this.props.match;
-    console.log('vealo', params )
+    const data = this.state.products.find(el => el.id == params.id )
+    this.setState({
+      nombreProducto:data.nombreProducto,
+      categoria:data.categoria,
+      peso:data.peso,
+      precio:data.precio,
+      referencia:data.referencia,
+      stock:data.stock,
+    })
+    // axios.get(`http://localhost/curso-laravel/inventario_producto/public/registro`)
+    //   .then(res => {
+        
+    //     console.log('de axios',res)
+    //   })
   }
 
   render() {
+    var self = this;
     return (
         <div className="container mt-4">
           <div className="row mb-4">
@@ -94,29 +102,29 @@ export default class EditProduct extends Component {
               <form onSubmit={this.getForm} className="container mt-4">
                 <div className="row form-group">
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="text" required="true" className="form-control" name="nombreProducto" aria-describedby="name" placeholder="Ingrese nombre del producto" onChange={this.handleChange} />
+                    <input value={this.state.nombreProducto} type="text" required="true" className="form-control" name="nombreProducto" aria-describedby="name" placeholder="Ingrese nombre del producto" onChange={this.handleChange}  />
                   </div>
 
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="text" className="form-control" name="referencia" placeholder="Referencia" onChange={this.handleChange} />
+                    <input value={this.state.referencia} type="text" className="form-control" name="referencia" placeholder="Referencia" onChange={this.handleChange} />
                   </div>
 
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="number" className="form-control" name="precio" placeholder="Precio" onChange={this.handleChange}/>
+                    <input value={this.state.precio} type="number" className="form-control" name="precio" placeholder="Precio" onChange={this.handleChange}/>
                   </div>
                 </div>
 
                 <div className="row form-group">
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="number" className="form-control" name="peso" placeholder="Peso" onChange={this.handleChange}/>
+                    <input value={this.state.peso} type="number" className="form-control" name="peso" placeholder="Peso" onChange={this.handleChange}/>
                   </div>
 
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="number" className="form-control" name="categoria" placeholder="Categoria" onChange={this.handleChange}/>
+                    <input value={this.state.categoria} type="number" className="form-control" name="categoria" placeholder="Categoria" onChange={this.handleChange}/>
                   </div>
 
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="number" className="form-control" name="stock" placeholder="Stock" onChange={this.handleChange} />
+                    <input value={this.state.stock} type="number" className="form-control" name="stock" placeholder="Stock" onChange={this.handleChange} />
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary mb-4">Guardar</button>

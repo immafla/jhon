@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom'
 export default class ListProduct extends Component {
   constructor() {
     super();
-    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.state = {
       //products: [{}],
@@ -15,20 +14,19 @@ export default class ListProduct extends Component {
     };
   }
 
-  handleEdit(e,p) {
+  handleDelete(e,p) {
     console.log(e.currentTarget.name)
     console.log(p)
-    // aqui edit
-  }
-  handleDelete() {
-    // aqui delete
+    axios.delete(`http://localhost/curso-laravel/inventario_producto/public/editar/${p.id}`)
+      .then(res => {
+        console.log('res eliminacion',res);
+      })
   }
 
   componentDidMount(){
     axios.get(`http://localhost/curso-laravel/inventario_producto/public/registro`)
       .then(res => {
-        console.log('de axios',res)
-        //this.setState({ products: res.detalle });
+        console.log('res precarga info',res)
       })
   }
 
@@ -61,21 +59,16 @@ export default class ListProduct extends Component {
                 <td>{product.stock}</td>
                 <td>
                   <div className="d-flex">
-                  <Link
-                      to={{
-                        pathname: "/edit/" + product.id
-                      }}
-                    >
+                  <Link to={{ pathname: "/edit/" + product.id }}>
                     <img
                       name={product.id}
-                      onClick={(event) => this.handleEdit(event, product)}
                       height="20px"
                       className="mx-1"
                       src="https://image.flaticon.com/icons/svg/1159/1159633.svg"
                     />
-                    </Link>
+                  </Link>
                     <img
-                      onClick={this.handleDelete}
+                      onClick={(event) => this.handleDelete(event, product)}
                       height="20px"
                       src="https://image.flaticon.com/icons/png/512/61/61848.png"
                     />
