@@ -9,15 +9,16 @@ export default class ListProduct extends Component {
     super();
     this.handleDelete = this.handleDelete.bind(this);
     this.state = {
-      //products: [{}],
-      products: product,
+      products: [{}],
+      //products: product,
     };
   }
 
   handleDelete(e,p) {
-    console.log(e.currentTarget.name)
+    let url = `http://localhost/curso-laravel/inventario_producto/public/editar/${p.id}`
+    console.log(url)
     console.log(p)
-    axios.delete(`http://localhost/curso-laravel/inventario_producto/public/editar/${p.id}`)
+    axios.delete(url)
       .then(res => {
         console.log('res eliminacion',res);
       })
@@ -26,7 +27,8 @@ export default class ListProduct extends Component {
   componentDidMount(){
     axios.get(`http://localhost/curso-laravel/inventario_producto/public/registro`)
       .then(res => {
-        console.log('res precarga info',res)
+        console.log('res precarga info',res.detalle)
+        this.setState({products:res.detalle})
       })
   }
 
@@ -67,11 +69,13 @@ export default class ListProduct extends Component {
                       src="https://image.flaticon.com/icons/svg/1159/1159633.svg"
                     />
                   </Link>
+                  <Link to={{ pathname: "/" }}>
                     <img
                       onClick={(event) => this.handleDelete(event, product)}
                       height="20px"
                       src="https://image.flaticon.com/icons/png/512/61/61848.png"
                     />
+                  </Link>
                   </div>
                 </td>
               </tr>
