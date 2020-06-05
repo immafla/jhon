@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { product } from "../mocks/product";
 import axios from 'axios';
 import "../style/globalStyle.css";
+import {Link} from 'react-router-dom'
 
 export default class ListProduct extends Component {
   constructor() {
@@ -60,6 +61,11 @@ export default class ListProduct extends Component {
                 <td>{product.stock}</td>
                 <td>
                   <div className="d-flex">
+                  <Link
+                      to={{
+                        pathname: "/edit/" + product.id
+                      }}
+                    >
                     <img
                       name={product.id}
                       onClick={(event) => this.handleEdit(event, product)}
@@ -67,6 +73,7 @@ export default class ListProduct extends Component {
                       className="mx-1"
                       src="https://image.flaticon.com/icons/svg/1159/1159633.svg"
                     />
+                    </Link>
                     <img
                       onClick={this.handleDelete}
                       height="20px"

@@ -75,6 +75,10 @@ export default class EditProduct extends Component {
   handleDelete() {
     // aqui delete
   }
+  componentDidMount(){
+    const { params } = this.props.match;
+    console.log('vealo', params )
+  }
 
   render() {
     return (
