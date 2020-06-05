@@ -59,7 +59,7 @@ export default class CreateProduct extends Component {
       categoria : this.state.categoria,
       stock : this.state.stock
     }
-
+    console.log('data', data)
 
     axios.post(`http://localhost/curso-laravel/inventario_producto/public/registro`, { data })
       .then(res => {
@@ -113,7 +113,7 @@ export default class CreateProduct extends Component {
                   </div>
 
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
-                    <input type="number" className="form-control" name="categoria" placeholder="Categoria" onChange={this.handleChange}/>
+                    <input type="text" className="form-control" name="categoria" placeholder="Categoria" onChange={this.handleChange}/>
                   </div>
 
                   <div className="col-md-4 col-sm-4 col-xs-12 data-required">
