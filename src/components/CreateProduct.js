@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import { product } from "../mocks/product";
 import "../style/globalStyle.css";
+import axios from 'axios';
+import { Redirect } from 'react-router'
 
 export default class CreateProduct extends Component {
   constructor() {
@@ -57,15 +59,18 @@ export default class CreateProduct extends Component {
       categoria : this.state.categoria,
       stock : this.state.stock
     }
-    console.log(data)
 
-    fetch('http://localhost/curso-laravel/inventario_producto/public/registro', {
-      method: 'POST',  
-      body: JSON.stringify(data),  
-      headers:{'Content-Type': 'application/json'}
-    }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
-        .catch(error => console.error('Error:', error));
+
+    axios.post(`http://localhost/curso-laravel/inventario_producto/public/registro`, { data })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+
+      if(data){
+        return <Redirect push to="/" />;
+      }
+
   }
     
   handleEdit(e) {
