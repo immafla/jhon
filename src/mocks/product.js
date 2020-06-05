@@ -1,26 +1,29 @@
 export const product = [
   {
     id: 1,
-    name: "Jabon",
-    ref:"1",
-    price: 1200,
+    nombreProducto: "Jabon",
+    referencia:"1",
+    precio: 1200,
     peso: 15447,
-    category: "Aseo",
+    categoria: "Aseo",
+    stock:1
   },
   {
     id: 2,
-    name: "Talco",
-    ref:"2",
-    price: 16200,
-    peso: 147,
-    category: "Aseo",
+    nombreProducto: "Cepillo",
+    referencia:"1",
+    precio: 1200,
+    peso: 15447,
+    categoria: "Aseo",
+    stock:4
   },
   {
     id: 3,
-    name: "Cepillo",
-    ref:"3",
-    price: 1400,
-    peso: 15488,
-    category: "Aseo",
+    nombreProducto: "Trapera",
+    referencia:"3",
+    precio: 1200,
+    peso: 15447,
+    categoria: "Aseo",
+    stock:20
   },
 ];

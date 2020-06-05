@@ -7,11 +7,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import CreateProduct from './components/CreateProduct'
+import EditProduct from './components/EditProduct'
 
 ReactDOM.render(
   <Router>
     <Route exact path="/" component={App} />
     <Route path="/create" component={CreateProduct} />
+    <Route path="/edit/:name/:ref" component={EditProduct} />
   </Router>,
   document.getElementById('root')
 );

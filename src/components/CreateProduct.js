@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {Link} from 'react-router-dom'
 import { product } from "../mocks/product";
 import "../style/globalStyle.css";
 
@@ -79,36 +79,48 @@ export default class CreateProduct extends Component {
   render() {
     return (
         <div className="container mt-4">
-            <form onSubmit={this.getForm}>
+          <div className="row mb-4">
+            <Link to="/"><button className="btn btn-primary">Atras </button></Link>
+          </div>
+          <div className="row">
+            <div className="card" style={{width: "100%"}}>
+              <div className="card-header">
+                Nuevo producto
+            </div>
+              <form onSubmit={this.getForm} className="container mt-4">
+                <div className="row form-group">
+                  <div className="col-md-4 col-sm-4 col-xs-12 data-required">
+                    <input type="text" required="true" className="form-control" name="nombreProducto" aria-describedby="name" placeholder="Ingrese nombre del producto" onChange={this.handleChange} />
+                  </div>
 
-                <div className="form-group">
-                    <input type="text" className="form-control" name="nombreProducto" aria-describedby="name" placeholder="Ingrese nombre del producto" onChange={this.handleChange} />
-                </div>
-
-                <div className="form-group">
+                  <div className="col-md-4 col-sm-4 col-xs-12 data-required">
                     <input type="text" className="form-control" name="referencia" placeholder="Referencia" onChange={this.handleChange} />
-                </div>
+                  </div>
 
-                <div className="form-group">
+                  <div className="col-md-4 col-sm-4 col-xs-12 data-required">
                     <input type="number" className="form-control" name="precio" placeholder="Precio" onChange={this.handleChange}/>
+                  </div>
                 </div>
 
-                <div className="form-group">
+                <div className="row form-group">
+                  <div className="col-md-4 col-sm-4 col-xs-12 data-required">
                     <input type="number" className="form-control" name="peso" placeholder="Peso" onChange={this.handleChange}/>
-                </div>
+                  </div>
 
-                <div className="form-group">
+                  <div className="col-md-4 col-sm-4 col-xs-12 data-required">
                     <input type="number" className="form-control" name="categoria" placeholder="Categoria" onChange={this.handleChange}/>
-                </div>
+                  </div>
 
-                <div className="form-group">
+                  <div className="col-md-4 col-sm-4 col-xs-12 data-required">
                     <input type="number" className="form-control" name="stock" placeholder="Stock" onChange={this.handleChange} />
+                  </div>
                 </div>
-
-                <button type="submit" className="btn btn-primary">Guardar</button>
-
-            </form>
+                <button type="submit" className="btn btn-primary mb-4">Guardar</button>
+              </form>
+            </div>
+          </div>
         </div>
+
     );
   }
 }
