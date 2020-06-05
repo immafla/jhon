@@ -9,8 +9,8 @@ export default class ListProduct extends Component {
     super();
     this.handleDelete = this.handleDelete.bind(this);
     this.state = {
-      //products: [{}],
-      products: product,
+      products: [{}],
+      //products: product,
     };
   }
 
@@ -27,8 +27,7 @@ export default class ListProduct extends Component {
   componentDidMount(){
     axios.get(`http://localhost/curso-laravel/inventario_producto/public/registro`)
       .then(res => {
-        console.log('res precarga info',res)
-        //this.setState({products:res.detalle})
+        this.setState({products:res.data.detalle})
       })
   }
 
