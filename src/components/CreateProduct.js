@@ -54,10 +54,10 @@ export default class CreateProduct extends Component {
     let data = {
       nombreProducto : this.state.nombreProducto,
       referencia : this.state.referencia,
-      precio : this.state.precio,
-      peso : this.state.peso,
+      precio : parseInt(this.state.precio),
+      peso : parseInt(this.state.peso),
       categoria : this.state.categoria,
-      stock : this.state.stock
+      stock : parseInt(this.state.stock)
     }
     console.log('data', data)
 
