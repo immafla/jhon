@@ -25,9 +25,9 @@ export default class ListProduct extends Component {
   }
 
   componentDidMount(){
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
+    axios.get(`http://localhost/curso-laravel/inventario_producto/public/registro`)
       .then(res => {
-        console.log('de axios',res.data)
+        console.log('de axios',res)
         //this.setState({ products: res.detalle });
       })
   }
