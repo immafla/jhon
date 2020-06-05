@@ -61,10 +61,14 @@ export default class CreateProduct extends Component {
     }
     console.log('data', data)
 
-    axios.post(`http://localhost/curso-laravel/inventario_producto/public/registro`,{headers: {
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-    }}, { data })
-      .then(res => {
+    axios({
+      method: 'POST', 
+      url: `http://localhost/curso-laravel/inventario_producto/public/registro`, 
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded'
+      },
+      data: JSON.stringify(data)
+    }).then(res => {
         console.log(res);
         console.log(res.data);
       })
